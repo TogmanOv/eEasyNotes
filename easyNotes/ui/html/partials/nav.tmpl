@@ -1,0 +1,25 @@
+{{define "nav"}}
+<nav>
+<div>
+<a href='/'>List of Notes</a>
+<!-- Include a new link, visible to all users -->
+<a href='/about'>About</a>
+{{if .IsAuthenticated}}
+<a href='/snippet/create'>Make your Notes</a>
+{{end}}
+</div>
+<div>
+{{if .IsAuthenticated}}
+<form action='/user/logout' method='POST'>
+<input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
+<button class="logout">Logout</button>
+</form>
+{{else}}
+<a href='/user/signup'>Signup</a>
+<a href='/user/login'>Login</a>
+{{end}}
+</div>
+</nav>
+{{end}}
+
+
